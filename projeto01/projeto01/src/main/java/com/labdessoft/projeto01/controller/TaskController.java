@@ -30,10 +30,11 @@ public class TaskController {
 	public ResponseEntity<String> adicionar(String descricao, Boolean completa, @RequestParam(required = false) String prazo) {
         try {
             taskService.adcionarTarefas(descricao, completa, prazo);
+			return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+			e.printStackTrace();
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	@PutMapping("/editar-task")
@@ -53,7 +54,6 @@ public class TaskController {
 	@Operation(summary = "Recuperar tarefas por id")
 	public ResponseEntity<Object> recuperar(@RequestParam() Long id) {
 		try {
-			
 			return new ResponseEntity<>(taskService.recuperarTarefas(id),HttpStatus.UPGRADE_REQUIRED);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -70,7 +70,6 @@ public class TaskController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-
 		}
 	}
 }
