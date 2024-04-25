@@ -6,7 +6,9 @@ import com.labdessoft.projeto01.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,18 +47,27 @@ public class TaskService {
 			if (tipos.length() > 10){
 				throw new Exception("Prazo excedeu limite de caracteres");
 			}
-			if (Integer.valueOf(tipos) < 1) {
-				throw new Exception("Prazo nulo ou negativo");
+			if (tipos.length() < 4) {
+				if (Integer.valueOf(tipos) < 1) {
+					throw new Exception("Prazo nulo ou negativo");
+				}
 			}
 		}
 	}
-
 
 	private TasksTypes validaTipos(String tipos, Tasks tasks) throws Exception{
 		if (tipos == null) {
 			return TasksTypes.livre;
 		} else if (tipos.length() > 3 && tipos.length() < 11) {
-			return TasksTypes.data;
+			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+			Date data = formato.parse(tipos);
+			Date dataAtual = new Date();
+			if (data.after(dataAtual) || data.equals(dataAtual)) {
+				return TasksTypes.data;
+			} else if (tipos.length() > 3 && tipos.length() < 10) {
+				throw new Exception("Data precisa ser informada no formato DD/MM/AAAA!");
+			}
+			throw new Exception("Data inferior a Atual!");
 		} else if (tipos.length() > 0 && tipos.length() < 4) {
 			return TasksTypes.prazo;
 		} else {
