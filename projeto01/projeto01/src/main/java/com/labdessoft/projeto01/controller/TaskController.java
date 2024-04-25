@@ -27,9 +27,13 @@ public class TaskController {
 
 	@PostMapping("/adicionar-task")
 	@Operation(summary = "Adcionar tarefas na lista")
-	public ResponseEntity<String> adicionar(String descricao, Boolean completa) {
-		taskService.adcionarTarefas(descricao, completa);
-		return new ResponseEntity<>(HttpStatus.CREATED);
+	public ResponseEntity<String> adicionar(String descricao, Boolean completa, @RequestParam(required = false) String prazo) {
+        try {
+            taskService.adcionarTarefas(descricao, completa, prazo);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	@PutMapping("/editar-task")

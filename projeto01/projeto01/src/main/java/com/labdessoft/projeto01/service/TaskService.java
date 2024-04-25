@@ -1,5 +1,6 @@
 package com.labdessoft.projeto01.service;
 
+import com.labdessoft.projeto01.Enum.TasksTypes;
 import com.labdessoft.projeto01.entity.Tasks;
 import com.labdessoft.projeto01.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,42 @@ public class TaskService {
             return listaTaks;
        }
 
-	public void adcionarTarefas(String descricao, Boolean completa) {
+	public void adcionarTarefas(String descricao, Boolean completa, String tipos) throws Exception{
 		Tasks tasks = new Tasks();
+		validaDados(descricao, tipos);
+		tasks.setTypes(validaTipos(tipos, tasks));
 		tasks.setCompleted(completa);
 		tasks.setDescription(descricao);
+
 		taskRepository.save(tasks);
 
+	}
+
+	private void validaDados(String descricao, String tipos) throws Exception{
+		if(descricao.length() < 10){
+			throw new Exception("Quantidade de caracteres inválidas");
+		}
+		if (tipos != null) {
+			if (tipos.length() > 10){
+				throw new Exception("Prazo excedeu limite de caracteres");
+			}
+			if (Integer.valueOf(tipos) < 1) {
+				throw new Exception("Prazo nulo ou negativo");
+			}
+		}
+	}
+
+
+	private TasksTypes validaTipos(String tipos, Tasks tasks) throws Exception{
+		if (tipos == null) {
+			return TasksTypes.livre;
+		} else if (tipos.length() > 3 && tipos.length() < 11) {
+			return TasksTypes.data;
+		} else if (tipos.length() > 0 && tipos.length() < 4) {
+			return TasksTypes.prazo;
+		} else {
+			throw new Exception("Prazo Negativo ou data inválida");
+		}
 	}
 
 	public void editarTarefas(Long id, String descricao, Boolean completa) throws Exception {

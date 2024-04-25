@@ -1,5 +1,6 @@
 package com.labdessoft.projeto01.entity;
 
+import com.labdessoft.projeto01.Enum.TasksTypes;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,6 +25,7 @@ public class Tasks {
 	@Size(min = 10, message = "Descrição da tarefa deve possuir pelo menos 10 caracteres")
 	private String description;
 	private Boolean completed;
+	private TasksTypes types;
 
 	public Tasks(String description) {
 		this.description = description;
@@ -34,4 +36,6 @@ public class Tasks {
 		return "Task [id=" + id + ", description=" +
 				description + ", completed=" + completed + "]";
 	}
+
+
 }
