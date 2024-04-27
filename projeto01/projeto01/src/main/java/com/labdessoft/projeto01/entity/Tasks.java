@@ -35,6 +35,7 @@ public class Tasks {
 	private TasksTypes types;
 	private LocalDate dataInicio;
 	private LocalDate dataPrazo;
+	private String statusEntregaTarefa;
 
 	public Tasks(String description) {
 		this.description = description;
@@ -46,20 +47,24 @@ public class Tasks {
 				description + ", completed=" + completed + "]";
 	}
 
-	public Tasks definirPrazo(Tasks tasks, String prazo) {
-		if (tasks.getTypes() == TasksTypes.data) {
+	public Tasks definirPrazo(String prazo) {
+		if (this.getTypes() == TasksTypes.data) {
 			DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			this.dataPrazo = LocalDate.parse(prazo, formato);
-			tasks.setDataPrazo(this.dataPrazo);
-			return tasks;
+			this.setDataPrazo(this.dataPrazo);
+			return this;
 		}
-		if (tasks.getTypes() == TasksTypes.prazo) {
+		if (this.getTypes() == TasksTypes.prazo) {
 			this.dataPrazo = this.dataInicio.plusDays(Long.parseLong(prazo));
-			tasks.setDataPrazo(this.dataPrazo);
-			return tasks;
+			this.setDataPrazo(this.dataPrazo);
+			return this;
 		}
 		return null;
 	}
 
-
+//	public Tasks statusDeEntrega() {
+//		LocalDate dataAtual = LocalDate.now();
+//		if (this.)
+//		return null;
+//	}
 }

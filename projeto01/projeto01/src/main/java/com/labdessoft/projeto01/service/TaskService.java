@@ -36,12 +36,11 @@ public class TaskService {
 		validaDados(descricao, tipos);
 		tasks.setDataInicio(dataAtual);
 		tasks.setTypes(validaTipos(tipos, tasks));
-		tasks.definirPrazo(tasks, tipos);
+		tasks.definirPrazo(tipos);
 		tasks.setCompleted(completa);
 		tasks.setDescription(descricao);
 
 		taskRepository.save(tasks);
-
 	}
 
 	private void validaDados(String descricao, String tipos) throws Exception{
@@ -95,6 +94,7 @@ public class TaskService {
 		if(!tasks.isPresent()) {
 			throw new Exception("Task não encotrada");
 		}
+//		tasks.get().statusDeEntrega();
 		return tasks.get();
 	}
 
