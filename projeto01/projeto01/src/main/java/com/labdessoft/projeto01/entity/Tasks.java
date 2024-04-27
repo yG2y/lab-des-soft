@@ -11,6 +11,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+
 @Data
 @Entity
 @NoArgsConstructor
@@ -26,6 +33,8 @@ public class Tasks {
 	private String description;
 	private Boolean completed;
 	private TasksTypes types;
+	private LocalDate dataInicio;
+	private LocalDate dataPrazo;
 
 	public Tasks(String description) {
 		this.description = description;
@@ -35,6 +44,21 @@ public class Tasks {
 	public String toString() {
 		return "Task [id=" + id + ", description=" +
 				description + ", completed=" + completed + "]";
+	}
+
+	public Tasks definirPrazo(Tasks tasks, String prazo) {
+		if (tasks.getTypes() == TasksTypes.data) {
+			DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			this.dataPrazo = LocalDate.parse(prazo, formato);
+			tasks.setDataPrazo(this.dataPrazo);
+			return tasks;
+		}
+		if (tasks.getTypes() == TasksTypes.prazo) {
+			this.dataPrazo = this.dataInicio.plusDays(Long.parseLong(prazo));
+			tasks.setDataPrazo(this.dataPrazo);
+			return tasks;
+		}
+		return null;
 	}
 
 

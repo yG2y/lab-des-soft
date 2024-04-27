@@ -3,10 +3,12 @@ package com.labdessoft.projeto01.service;
 import com.labdessoft.projeto01.Enum.TasksTypes;
 import com.labdessoft.projeto01.entity.Tasks;
 import com.labdessoft.projeto01.repository.TaskRepository;
+import org.hibernate.type.descriptor.java.LocalDateJavaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,8 +32,11 @@ public class TaskService {
 
 	public void adcionarTarefas(String descricao, Boolean completa, String tipos) throws Exception{
 		Tasks tasks = new Tasks();
+		LocalDate dataAtual = LocalDate.now();
 		validaDados(descricao, tipos);
+		tasks.setDataInicio(dataAtual);
 		tasks.setTypes(validaTipos(tipos, tasks));
+		tasks.definirPrazo(tasks, tipos);
 		tasks.setCompleted(completa);
 		tasks.setDescription(descricao);
 
