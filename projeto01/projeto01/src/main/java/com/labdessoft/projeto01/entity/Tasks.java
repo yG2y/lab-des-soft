@@ -62,9 +62,16 @@ public class Tasks {
 		return null;
 	}
 
-//	public Tasks statusDeEntrega() {
-//		LocalDate dataAtual = LocalDate.now();
-//		if (this.)
-//		return null;
-//	}
+	public Tasks statusDeEntrega() {
+		LocalDate dataAtual = LocalDate.now();
+		int diferenca = this.dataPrazo.compareTo(dataAtual);
+		if (this.dataPrazo.isBefore(dataAtual)) {
+			this.setStatusEntregaTarefa("A tarefa está atrasada à " + diferenca*-1 + " dias!");
+			return this;
+		}
+		if (this.dataPrazo.isAfter(dataAtual)) {
+			this.setStatusEntregaTarefa("A");
+		}
+		return null;
+	}
 }

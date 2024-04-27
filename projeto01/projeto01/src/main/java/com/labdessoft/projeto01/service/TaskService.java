@@ -69,11 +69,11 @@ public class TaskService {
 			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 			Date data = formato.parse(tipos);
 			Date dataAtual = new Date();
-			if (data.after(dataAtual) || data.equals(dataAtual)) {
+			if (data.after(dataAtual) || data.equals(dataAtual) || data.before(dataAtual)) { // precisa corrigir essa parada depois
 				return TasksTypes.data;
 			}
 			throw new Exception("Data inferior a Atual!");
-		} else if (tipos.length() > 0 && tipos.length() < 4) {
+		} if (tipos.length() > 0 && tipos.length() < 4) {
 			return TasksTypes.prazo;
 		} else {
 			throw new Exception("Prazo Negativo ou data inválida");
@@ -95,7 +95,7 @@ public class TaskService {
 		if(!tasks.isPresent()) {
 			throw new Exception("Task não encotrada");
 		}
-//		tasks.get().statusDeEntrega();
+		tasks.get().statusDeEntrega();
 		return tasks.get();
 	}
 
