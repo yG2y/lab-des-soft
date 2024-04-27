@@ -35,7 +35,7 @@ public class TaskService {
 		LocalDate dataAtual = LocalDate.now();
 		validaDados(descricao, tipos);
 		tasks.setDataInicio(dataAtual);
-		tasks.setTypes(validaTipos(tipos, tasks));
+		tasks.setTypes(validaTipos(tipos));
 		tasks.definirPrazo(tipos);
 		tasks.setCompleted(completa);
 		tasks.setDescription(descricao);
@@ -59,17 +59,18 @@ public class TaskService {
 		}
 	}
 
-	private TasksTypes validaTipos(String tipos, Tasks tasks) throws Exception{
+	private TasksTypes validaTipos(String tipos) throws Exception{
 		if (tipos == null) {
 			return TasksTypes.livre;
 		} else if (tipos.length() > 3 && tipos.length() < 11) {
+			if (tipos.length() > 3 && tipos.length() < 10) {
+				throw new Exception("Data precisa ser informada no formato DD/MM/AAAA ou em até 3 digitos para prazo!");
+			}
 			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 			Date data = formato.parse(tipos);
 			Date dataAtual = new Date();
 			if (data.after(dataAtual) || data.equals(dataAtual)) {
 				return TasksTypes.data;
-			} else if (tipos.length() > 3 && tipos.length() < 10) {
-				throw new Exception("Data precisa ser informada no formato DD/MM/AAAA!");
 			}
 			throw new Exception("Data inferior a Atual!");
 		} else if (tipos.length() > 0 && tipos.length() < 4) {
