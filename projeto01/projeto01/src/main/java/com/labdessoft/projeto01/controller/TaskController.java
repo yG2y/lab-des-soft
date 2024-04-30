@@ -43,7 +43,7 @@ public class TaskController {
 			@RequestParam(required = false) Boolean completa) {
 		try {
 			taskService.editarTarefas(id, descricao, completa);
-			return new ResponseEntity<>(HttpStatus.UPGRADE_REQUIRED);
+			return new ResponseEntity<>(HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -54,7 +54,7 @@ public class TaskController {
 	@Operation(summary = "Recuperar tarefas por id")
 	public ResponseEntity<Object> recuperar(@RequestParam() Long id) {
 		try {
-			return new ResponseEntity<>(taskService.recuperarTarefas(id),HttpStatus.UPGRADE_REQUIRED);
+			return new ResponseEntity<>(taskService.recuperarTarefas(id),HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

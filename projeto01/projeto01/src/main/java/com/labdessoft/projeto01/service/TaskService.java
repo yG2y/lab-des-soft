@@ -1,6 +1,7 @@
 package com.labdessoft.projeto01.service;
 
 import com.labdessoft.projeto01.Enum.TasksTypes;
+import com.labdessoft.projeto01.VO.TaskVO;
 import com.labdessoft.projeto01.entity.Tasks;
 import com.labdessoft.projeto01.repository.TaskRepository;
 import org.hibernate.type.descriptor.java.LocalDateJavaType;
@@ -34,7 +35,7 @@ public class TaskService {
 		Tasks tasks = new Tasks();
 		LocalDate dataAtual = LocalDate.now();
 		validaDados(descricao, tipos);
-		tasks.setDataInicio(dataAtual);
+		tasks.setInitialDate(dataAtual);
 		tasks.setTypes(validaTipos(tipos));
 		tasks.definirPrazo(tipos);
 		tasks.setCompleted(completa);
@@ -69,7 +70,7 @@ public class TaskService {
 			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 			Date data = formato.parse(tipos);
 			Date dataAtual = new Date();
-			if (data.after(dataAtual) || data.equals(dataAtual) || data.before(dataAtual)) { // precisa corrigir essa parada depois
+			if (data.after(dataAtual) || data.equals(dataAtual)) {
 				return TasksTypes.data;
 			}
 			throw new Exception("Data inferior a Atual!");
@@ -96,7 +97,7 @@ public class TaskService {
 			throw new Exception("Task não encotrada");
 		}
 		tasks.get().statusDeEntrega();
-		return tasks.get();
+		return TaskVO.passsarDadosParaVO(tasks.get(),true);
 	}
 
 	public void deletar(Long id) throws Exception {
