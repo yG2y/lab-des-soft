@@ -8,7 +8,9 @@ import com.labdessoft.projeto01.repository.TaskRepository;
 import org.hibernate.type.descriptor.java.LocalDateJavaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -69,8 +71,7 @@ public class TaskService {
 			if (tipos.length() > 3 && tipos.length() < 10) {
 				throw new Exception("Data precisa ser informada no formato DD/MM/AAAA ou em até 3 digitos para prazo!");
 			}
-			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-			Date data = formato.parse(tipos);
+			Date data = converteStringParaData(tipos);
 			Date dataAtual = new Date();
 			if (data.after(dataAtual) || data.equals(dataAtual) || data.before(dataAtual)) {
 				return TasksTypes.data;
@@ -83,13 +84,22 @@ public class TaskService {
 		}
 	}
 
-	public void editarTarefas(Long id, String descricao, Boolean completa) throws Exception {
+	private Date converteStringParaData(String tipos) throws ParseException {
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		Date data = formato.parse(tipos);
+		return data;
+	}
+
+
+	public void editarTarefas(Long id, String descricao, Boolean completa, TasksPriority prioridade) throws Exception {
 		Optional<Tasks> tasks = taskRepository.findById(id);
 		if(!tasks.isPresent()) {
 			throw new Exception("Task não encotrada");
 		}
 		tasks.get().setCompleted(completa ==  null ? tasks.get().getCompleted() : completa);
 		tasks.get().setDescription(descricao ==  null ? tasks.get().getDescription() : descricao );
+		tasks.get().setPriority(prioridade ==  null ? tasks.get().getPriority() : prioridade );
+
 		taskRepository.save(tasks.get());
 	}
 

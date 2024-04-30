@@ -41,9 +41,9 @@ public class TaskController {
 	@PutMapping("/editar-task")
 	@Operation(summary = "Editar tarefas na lista")
 	public ResponseEntity<String> editar(@RequestParam() Long id, @RequestParam(required = false) String descricao,
-			@RequestParam(required = false) Boolean completa) {
+			@RequestParam(required = false) Boolean completa, @RequestParam(required = false) TasksPriority priority) {
 		try {
-			taskService.editarTarefas(id, descricao, completa);
+			taskService.editarTarefas(id, descricao, completa, priority);
 			return new ResponseEntity<>(HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			e.printStackTrace();
