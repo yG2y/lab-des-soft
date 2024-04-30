@@ -73,7 +73,7 @@ public class TaskService {
 			}
 			Date data = converteStringParaData(tipos);
 			Date dataAtual = new Date();
-			if (data.after(dataAtual) || data.equals(dataAtual) || data.before(dataAtual)) {
+			if (data.after(dataAtual) || data.equals(dataAtual)) {
 				return TasksTypes.data;
 			}
 			throw new Exception("Data inferior a Atual!");
