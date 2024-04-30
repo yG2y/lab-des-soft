@@ -96,6 +96,9 @@ public class TaskService {
 		if(!tasks.isPresent()) {
 			throw new Exception("Task não encotrada");
 		}
+		if(descricao.length() < 10){
+			throw new Exception("Quantidade de caracteres inválidas");
+		}
 		tasks.get().setCompleted(completa ==  null ? tasks.get().getCompleted() : completa);
 		tasks.get().setDescription(descricao ==  null ? tasks.get().getDescription() : descricao );
 		tasks.get().setPriority(prioridade ==  null ? tasks.get().getPriority() : prioridade );
