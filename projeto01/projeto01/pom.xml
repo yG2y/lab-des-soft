@@ -14,7 +14,7 @@
 	<name>projeto01</name>
 	<description>projeto 01 laboratório de desenvolvimento de software</description>
 	<properties>
-		<java.version>22</java.version>
+		<java.version></java.version>
 	</properties>
 	<dependencies>
 		<dependency>
