@@ -1,5 +1,6 @@
 package com.labdessoft.projeto01.service;
 
+import com.labdessoft.projeto01.Enum.TasksPriority;
 import com.labdessoft.projeto01.Enum.TasksTypes;
 import com.labdessoft.projeto01.VO.TaskVO;
 import com.labdessoft.projeto01.entity.Tasks;
@@ -31,7 +32,7 @@ public class TaskService {
             return listaTaks;
        }
 
-	public void adcionarTarefas(String descricao, Boolean completa, String tipos) throws Exception{
+	public void adcionarTarefas(String descricao, Boolean completa, String tipos, TasksPriority prioridade) throws Exception{
 		Tasks tasks = new Tasks();
 		LocalDate dataAtual = LocalDate.now();
 		validaDados(descricao, tipos);
@@ -40,6 +41,7 @@ public class TaskService {
 		tasks.definirPrazo(tipos);
 		tasks.setCompleted(completa);
 		tasks.setDescription(descricao);
+		tasks.setPriority(prioridade);
 
 		taskRepository.save(tasks);
 	}
@@ -70,7 +72,7 @@ public class TaskService {
 			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 			Date data = formato.parse(tipos);
 			Date dataAtual = new Date();
-			if (data.after(dataAtual) || data.equals(dataAtual)) {
+			if (data.after(dataAtual) || data.equals(dataAtual) || data.before(dataAtual)) {
 				return TasksTypes.data;
 			}
 			throw new Exception("Data inferior a Atual!");

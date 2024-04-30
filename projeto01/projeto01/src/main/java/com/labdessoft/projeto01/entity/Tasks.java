@@ -1,5 +1,6 @@
 package com.labdessoft.projeto01.entity;
 
+import com.labdessoft.projeto01.Enum.TasksPriority;
 import com.labdessoft.projeto01.Enum.TasksTypes;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
@@ -33,10 +34,11 @@ public class Tasks {
 	@Size(min = 10, message = "Descrição da tarefa deve possuir pelo menos 10 caracteres")
 	private String description;
 	private Boolean completed;
-	private TasksTypes types;
 	private LocalDate initialDate;
 	private LocalDate deadlineDate;
 	private String deliveryStatus;
+	private TasksTypes types;
+	private TasksPriority priority;
 
 	public Tasks(String description) {
 		this.description = description;
@@ -65,9 +67,17 @@ public class Tasks {
 
 	public Tasks statusDeEntrega() {
 		LocalDate dataAtual = LocalDate.now();
-		long diferencaEmDias = ChronoUnit.DAYS.between(dataAtual, this.deadlineDate);
+		if (this.types == TasksTypes.livre) {
+			if (this.completed == true) {
+				this.setDeliveryStatus("A tarefa foi concluída!");
+				return this;
+			}
+			return null;
+
+		} else if (this.types != TasksTypes.livre) {
+			long diferencaEmDias = ChronoUnit.DAYS.between(dataAtual, this.deadlineDate);
 			if (this.deadlineDate.isBefore(dataAtual)) {
-				if (this.completed == false && this.types != TasksTypes.livre) {
+				if (this.completed == false) {
 					this.setDeliveryStatus("A tarefa está atrasada à " + Math.abs(diferencaEmDias) + " dias!");
 					return this;
 				}
@@ -75,11 +85,12 @@ public class Tasks {
 					this.setDeliveryStatus("A tarefa foi concluída!");
 					return this;
 				}
-			}
-			if (this.deadlineDate.isAfter(dataAtual)) {
+			} if (this.deadlineDate.isAfter(dataAtual)) {
 				this.setDeliveryStatus("A entrega está prevista para daqui " + Math.abs(diferencaEmDias) + " dias!");
 				return this;
 			}
-		return null;
+		}
+
+        return null;
 	}
 }

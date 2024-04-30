@@ -23,13 +23,14 @@ public class TaskVO {
     private LocalDate dataInicio;
     private LocalDate dataPrazo;
     private String statusEntregaTarefa;
-
+    private String prioridade;
 
     public static Object passsarDadosParaVO(Tasks tasks, Boolean mostrarStatus) {
         TaskVO taskVO = new TaskVO();
         taskVO.setDescricao(tasks.getDescription());
         taskVO.setCompleto(tasks.getCompleted() == true ? "Sim" : "Não");
         taskVO.setTipos(tasks.getTypes());
+        taskVO.setPrioridade(tasks.getPriority().toString());
 //        taskVO.setDataInicio(tasks.getInitialDate());
 //        taskVO.setDataPrazo(tasks.getDeadlineDate());
 

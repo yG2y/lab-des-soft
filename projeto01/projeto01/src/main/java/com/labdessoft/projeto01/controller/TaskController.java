@@ -1,5 +1,6 @@
 package com.labdessoft.projeto01.controller;
 
+import com.labdessoft.projeto01.Enum.TasksPriority;
 import com.labdessoft.projeto01.service.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,9 @@ public class TaskController {
 
 	@PostMapping("/adicionar-task")
 	@Operation(summary = "Adcionar tarefas na lista")
-	public ResponseEntity<String> adicionar(String descricao, Boolean completa, @RequestParam(required = false) String prazo) {
+	public ResponseEntity<String> adicionar(String descricao, Boolean completa, TasksPriority priority, @RequestParam(required = false) String prazo) {
         try {
-            taskService.adcionarTarefas(descricao, completa, prazo);
+            taskService.adcionarTarefas(descricao, completa, prazo, priority);
 			return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
 			e.printStackTrace();
