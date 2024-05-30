@@ -1,22 +1,3 @@
-#FROM ubuntu:latest as build
-## Guilherme
-#LABEL authors="Guilherme G2"
-#RUN apt-get update
-#RUN apt-get install openjdk-21-jdk -y
-#
-#COPY . .
-#
-#RUN apt-get install maven -y
-#RUN mvn clean install
-#
-#FROM openjdk:21-jdk-slim
-#
-#EXPOSE 8080
-#
-#COPY --from=build target/*.jar app.jar
-#
-#ENTRYPOINT ["java", "-jar","app.jar"]
-
 # Usar Ubuntu como imagem base
 FROM ubuntu:latest as build
 
@@ -24,14 +5,16 @@ FROM ubuntu:latest as build
 LABEL authors="Guilherme G2"
 
 # Atualizar pacotes e instalar o JDK e Maven
-RUN apt-get update && \
-    apt-get install openjdk-21-jdk maven -y
+RUN apt-get update && apt-get install openjdk-21-jdk maven -y
 
 # Definir o diretório de trabalho no container
 WORKDIR /app
 
 # Copiar todo o conteúdo do diretório do projeto para o diretório /app
 COPY . /app
+
+# Listar conteúdo do diretório /app para debug
+RUN ls -la /app
 
 # Executar Maven para construir o aplicativo, dentro do diretório /app
 RUN mvn clean install
