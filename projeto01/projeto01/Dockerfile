@@ -19,7 +19,7 @@
 
 # Usar uma imagem base que já possui Maven e Java instalados, se possível
 # Por exemplo, usar uma imagem oficial do Maven que já vem com Maven e OpenJDK instalados
-FROM maven:3.8.5-openjdk-21 as build
+FROM maven:3.9.5-openjdk-21 as build
 # Guilherme
 LABEL authors="Guilherme G2"
 
