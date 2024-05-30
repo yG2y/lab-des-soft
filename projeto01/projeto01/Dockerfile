@@ -10,13 +10,16 @@ RUN apt-get update && apt-get install openjdk-21-jdk maven -y
 # Definir o diretório de trabalho no container
 WORKDIR /app
 
-# Copiar todo o conteúdo do diretório do projeto para o diretório /app
-COPY . /app
+# Copiar o arquivo pom.xml e o diretório src para o diretório /app
+# Ajuste os caminhos conforme a localização do Dockerfile e onde você executa o docker build
+COPY projeto01/projeto01/pom.xml /app/
+COPY projeto01/projeto01/src /app/src
 
-# Listar conteúdo do diretório /app para debug
+# Listar conteúdo do diretório /app para verificar a presença do pom.xml e do diretório src
 RUN ls -la /app
+RUN ls -la /app/src
 
-# Executar Maven para construir o aplicativo, dentro do diretório /app
+# Executar Maven para construir o aplicativo
 RUN mvn clean install
 
 # Usar uma imagem base mais leve para a execução
