@@ -17,22 +17,24 @@
 #
 #ENTRYPOINT ["java", "-jar","app.jar"]
 
-# Usar a imagem base do OpenJDK para garantir que temos Java instalado
-FROM openjdk:21-jdk as build
+# Usar Ubuntu como imagem base
+FROM ubuntu:latest as build
 
-# Instalar Maven
+# Definir o autor da imagem
+LABEL authors="Guilherme G2"
+
+# Atualizar pacotes e instalar o JDK e Maven
 RUN apt-get update && \
-    apt-get install -y maven
+    apt-get install openjdk-21-jdk maven -y
 
-# Definir o diretório de trabalho dentro do Docker
+# Definir o diretório de trabalho no container
 WORKDIR /app
 
-# Copiar o arquivo pom.xml e o diretório src para o diretório de trabalho
-COPY pom.xml /app/pom.xml
-COPY src /app/src
+# Copiar todo o conteúdo do diretório do projeto para o diretório /app
+COPY . /app
 
-# Executar Maven para construir o aplicativo
-RUN mvn clean install -DskipTests
+# Executar Maven para construir o aplicativo, dentro do diretório /app
+RUN mvn clean install
 
 # Usar uma imagem base mais leve para a execução
 FROM openjdk:21-jdk-slim
