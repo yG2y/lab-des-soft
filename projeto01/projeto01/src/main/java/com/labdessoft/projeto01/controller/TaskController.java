@@ -1,5 +1,6 @@
 package com.labdessoft.projeto01.controller;
 
+import com.labdessoft.projeto01.Enum.TasksPriority;
 import com.labdessoft.projeto01.service.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,9 @@ public class TaskController {
 
 	@PostMapping("/adicionar-task")
 	@Operation(summary = "Adcionar tarefas na lista")
-	public ResponseEntity<String> adicionar(String descricao, Boolean completa, @RequestParam(required = false) String prazo) {
+	public ResponseEntity<String> adicionar(String descricao, Boolean completa, TasksPriority priority, @RequestParam(required = false) String prazo) {
         try {
-            taskService.adcionarTarefas(descricao, completa, prazo);
+            taskService.adcionarTarefas(descricao, completa, prazo, priority);
 			return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
 			e.printStackTrace();
@@ -39,11 +40,10 @@ public class TaskController {
 
 	@PutMapping("/editar-task")
 	@Operation(summary = "Editar tarefas na lista")
-	public ResponseEntity<String> editar(@RequestParam() Long id, @RequestParam(required = false) String descricao,
-			@RequestParam(required = false) Boolean completa) {
+	public ResponseEntity<String> editar(@RequestParam() Long id, String descricao, Boolean completa, TasksPriority priority) {
 		try {
-			taskService.editarTarefas(id, descricao, completa);
-			return new ResponseEntity<>(HttpStatus.UPGRADE_REQUIRED);
+			taskService.editarTarefas(id, descricao, completa, priority);
+			return new ResponseEntity<>(HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -54,7 +54,7 @@ public class TaskController {
 	@Operation(summary = "Recuperar tarefas por id")
 	public ResponseEntity<Object> recuperar(@RequestParam() Long id) {
 		try {
-			return new ResponseEntity<>(taskService.recuperarTarefas(id),HttpStatus.UPGRADE_REQUIRED);
+			return new ResponseEntity<>(taskService.recuperarTarefas(id),HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
