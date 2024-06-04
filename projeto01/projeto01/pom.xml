@@ -103,7 +103,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>3.2.4</version>
 				<configuration>
-					<mainClass>com.labdessoft.projeto01.NomeDaSuaClassePrincipal</mainClass>
+					<mainClass>com.labdessoft.projeto01.Projeto01Application</mainClass>
 				</configuration>
 			</plugin>
 			<plugin>
