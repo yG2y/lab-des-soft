@@ -15,7 +15,6 @@ RUN apt-get install openjdk-21-jdk maven -y
 
 # Definir o diretório de trabalho no container
 WORKDIR /app
-
 # Copiar o arquivo pom.xml e o diretório src para o diretório /app
 COPY pom.xml /app/
 COPY src /app/src
