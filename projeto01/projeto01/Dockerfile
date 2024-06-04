@@ -4,17 +4,12 @@ FROM ubuntu:latest as build
 # Definir o autor da imagem
 LABEL authors="Guilherme G2"
 
-# Configurar locale para UTF-8
-RUN apt-get update && apt-get install -y locales && locale-gen en_US.UTF-8
-ENV LANG=en_US.UTF-8
-ENV LANGUAGE=en_US:en
-ENV LC_ALL=en_US.UTF-8
-
 # Atualizar pacotes e instalar o JDK e Maven
-RUN apt-get install openjdk-21-jdk maven -y
+RUN apt-get update && apt-get install openjdk-21-jdk maven -y
 
 # Definir o diretório de trabalho no container
 WORKDIR /app
+
 # Copiar o arquivo pom.xml e o diretório src para o diretório /app
 COPY pom.xml /app/
 COPY src /app/src
