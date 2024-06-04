@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install openjdk-21-jdk maven -y
 WORKDIR /app
 
 # Copiar o arquivo pom.xml e o diretório src para o diretório /app
-COPY pom.xml /app/
+COPY projeto01/projeto01/pom.xml /app/
+COPY projeto01/projeto01/src /app/src
 
 # Executar Maven para construir o aplicativo
 RUN mvn clean install
