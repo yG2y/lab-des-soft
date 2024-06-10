@@ -41,6 +41,7 @@ public class Tasks {
 	private TasksPriority priority;
 
 	public Tasks(String description) {
+		LocalDate dataAtual = LocalDate.now();
 		this.description = description;
 	}
 
