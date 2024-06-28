@@ -1,26 +1,22 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 export const TodoForm = ({ addTodo }) => {
-  const [description, setDescription] = useState("");
-  const [completed, setCompleted] = useState(false);
-  const [priority, setPriority] = useState("LOW");
-  const [dueDate, setDueDate] = useState("");
+  const [description, setDescription] = useState('');
+  const [complete, setComplete] = useState(false);
+  const [priority, setPriority] = useState('baixa');
+  const [deadline, setDeadline] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (description && priority) {
-      const newTodo = {
-        description,
-        completed,
-        priority,
-        dueDate
-      };
-      console.log("Submitting new todo:", newTodo);
-      addTodo(newTodo);
+    if (description.length >= 10) {
+      const finalDeadline = deadline.trim() === '' ? null : deadline;
+      addTodo(description, complete, priority, finalDeadline);
       setDescription('');
-      setCompleted(false);
-      setPriority('LOW');
-      setDueDate('');
+      setComplete(false);
+      setPriority('baixa');
+      setDeadline('');
+    } else {
+      alert('Descrição deve ter pelo menos 10 caracteres');
     }
   };
 
@@ -38,20 +34,23 @@ export const TodoForm = ({ addTodo }) => {
         onChange={(e) => setPriority(e.target.value)}
         className="todo-select"
       >
-        <option value="LOW">Baixa</option>
-        <option value="MEDIUM">Média</option>
-        <option value="HIGH">Alta</option>
+        <option value="alta">Alta</option>
+        <option value="media">Média</option>
+        <option value="baixa">Baixa</option>
       </select>
-      <input
-        type="checkbox"
-        checked={completed}
-        onChange={(e) => setCompleted(e.target.checked)}
-        className="todo-checkbox"
-      />
+      <label className="todo-checkbox-label">
+        <input
+          type="checkbox"
+          checked={complete}
+          onChange={(e) => setComplete(e.target.checked)}
+          className="todo-checkbox"
+        />
+        Completa?
+      </label>
       <input
         type="text"
-        value={dueDate}
-        onChange={(e) => setDueDate(e.target.value)}
+        value={deadline}
+        onChange={(e) => setDeadline(e.target.value)}
         className="todo-input"
         placeholder="Prazo (opcional)"
       />
@@ -61,4 +60,5 @@ export const TodoForm = ({ addTodo }) => {
     </form>
   );
 };
+
 export default TodoForm;
