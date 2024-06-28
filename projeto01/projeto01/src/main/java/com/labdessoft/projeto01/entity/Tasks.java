@@ -12,13 +12,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
-import java.util.Date;
 
 @Data
 @Entity
@@ -52,6 +48,7 @@ public class Tasks {
 	}
 
 	public Tasks definirPrazo(String prazo) {
+		this.initialDate = LocalDate.now();
 		if (this.getTypes() == TasksTypes.data) {
 			DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			this.deadlineDate = LocalDate.parse(prazo, formato);
@@ -61,6 +58,9 @@ public class Tasks {
 		if (this.getTypes() == TasksTypes.prazo) {
 			this.deadlineDate = this.initialDate.plusDays(Long.parseLong(prazo));
 			this.setDeadlineDate(this.deadlineDate);
+			return this;
+		}
+		if (this.getTypes() == TasksTypes.livre) {
 			return this;
 		}
 		return null;

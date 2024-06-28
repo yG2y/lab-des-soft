@@ -5,17 +5,13 @@ import com.labdessoft.projeto01.Enum.TasksTypes;
 import com.labdessoft.projeto01.VO.TaskVO;
 import com.labdessoft.projeto01.entity.Tasks;
 import com.labdessoft.projeto01.repository.TaskRepository;
-import org.hibernate.type.descriptor.java.LocalDateJavaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,8 +48,8 @@ public class TaskService {
 		if(descricao.length() < 10){
 			throw new Exception("Quantidade de caracteres inválidas");
 		}
-
 	}
+
 	private void validaDadosTipos(String tipos) throws Exception{
 		if (tipos != null) {
 			if (tipos.length() > 10){
@@ -96,9 +92,9 @@ public class TaskService {
 	public void editarTarefas(Long id, String descricao, Boolean completa, TasksPriority prioridade) throws Exception {
 		Optional<Tasks> tasks = taskRepository.findById(id);
 		if(!tasks.isPresent()) {
-			throw new Exception("Task não encotrada");
+			throw new Exception("Task não encontrada");
 		}
-		validaTipos(descricao);
+		validaString(descricao);
 		tasks.get().setCompleted(completa ==  null ? tasks.get().getCompleted() : completa);
 		tasks.get().setDescription(descricao ==  null ? tasks.get().getDescription() : descricao );
 		tasks.get().setPriority(prioridade ==  null ? tasks.get().getPriority() : prioridade );
@@ -111,6 +107,7 @@ public class TaskService {
 		if(!tasks.isPresent()) {
 			throw new Exception("Task não encotrada");
 		}
+
 		tasks.get().statusDeEntrega();
 		return TaskVO.passsarDadosParaVO(tasks.get(),true);
 	}

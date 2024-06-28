@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/task")
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin("*")
 public class TaskController {
 
 	@Autowired
@@ -53,13 +54,12 @@ public class TaskController {
 	}
 	@GetMapping("/recuperar-task-por-id")
 	@Operation(summary = "Recuperar tarefas por id")
-	public ResponseEntity<Object> recuperar(@RequestParam() Long id) {
+	public ResponseEntity<Object> recuperar(Long id) {
 		try {
 			return new ResponseEntity<>(taskService.recuperarTarefas(id),HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-
 		}
 	}
 	@DeleteMapping("/deletar-task-por-id")
