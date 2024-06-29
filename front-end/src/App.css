@@ -1,0 +1,252 @@
+* {
+  background-color: #594190;
+}
+
+.App {
+  text-align: center;
+}
+
+.toggle-details-btn {
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-details-btn:hover {
+  background-color: #3700b3;
+}
+
+.todo-details {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  color: #594190;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: grey;
+}
+
+.incompleted {
+  text-decoration: none;
+}
+
+.divIcon {
+  display: flex;
+  gap: 10px; /* Espaçamento entre os ícones */
+  margin-top: 10px;
+  justify-content: flex-end; /* Alinhar à direita */
+}
+
+.TodoWrapper {
+  background-color: #2c2f3a;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: auto;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.error {
+  color: red;
+  background-color: #f8d7da;
+  padding: 10px;
+  border: 1px solid red;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.todo-checkbox-label {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  border-radius: 5px;
+  padding: 1px;
+}
+
+.todo-checkbox {
+  margin-left: 10px; /* Espaçamento à esquerda do checkbox */
+}
+
+.TodoForm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.2);
+  gap: 10px;
+ 
+}
+
+.todo-input {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  flex: 1;
+  margin-right: 10px;
+  background-color: #36394d;
+  color: white;
+  margin-left: 1%; /* Espaçamento entre os elementos */
+}
+
+
+.todo-select {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #36394d;
+  color: white;
+  margin-right: 10px;
+}
+
+.todo-btn {
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.todo-btn:hover {
+  background-color: #7a52d4;
+}
+
+.Todo {
+  display: flex;
+  flex-direction: column; /* Alterado para coluna */
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  color: white;
+  background-color: #594190; /* Adicionado para o fundo das tarefas */
+}
+
+.todo-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-icon {
+  cursor: pointer;
+  color: #ff6b6b;
+}
+
+div {
+  margin: 2%;
+}
+
+h1 {
+  border-radius: 5px;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-options {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaçamento entre os elementos */
+}
+
+.edit-buttons {
+  display: flex;
+  gap: 10px; /* Espaçamento entre os botões de salvar e cancelar */
+  margin-top: 10px; /* Espaçamento acima dos botões */
+}
+
+.modal {
+  background: rgb(49, 4, 63);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: auto;
+  position: relative;
+  top: 20%;
+  text-align: center;
+}
+.modal, h2 {
+  border-radius: 5px;
+}
+.modal, p {
+  padding: 2%;
+  border-radius: 5px;
+}
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  border-radius: 10px;
+}
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+.clear-error-btn {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.clear-error-btn:hover {
+  background-color: #e65c5c;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  background-color: #2c2f3a;
+  border-top: 1px solid #fff;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.footer a {
+  color: white;
+  margin: 0 15px;
+  transition: color 0.3s ease;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.footer a:hover {
+  color: #6200ea;
+}
