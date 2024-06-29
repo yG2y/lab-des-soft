@@ -149,6 +149,7 @@ div {
 
 h1 {
   border-radius: 5px;
+  color: white;
 }
 
 .edit-form {
@@ -235,18 +236,22 @@ h1 {
   background-color: #2c2f3a;
   border-top: 1px solid #fff;
   position: fixed;
-  width: 100%;
+  width: 91%;
   bottom: 0;
+  border-start-start-radius: 5px;
+  border-start-end-radius: 5px;
 }
 
 .footer a {
   color: white;
   margin: 0 15px;
-  transition: color 0.3s ease;
   padding: 5px;
   border-radius: 10px;
+  transition: 1s;
 }
 
 .footer a:hover {
-  color: #6200ea;
+  color: #842ffc;
+  transition: 1s;
+  transform: rotate(360deg);
 }

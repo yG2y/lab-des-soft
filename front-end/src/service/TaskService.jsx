@@ -1,9 +1,4 @@
-import axios from 'axios';
-
-const api = axios.create({
-  // baseURL: 'http://localhost:8088/api/task',
-  baseURL: 'https://lab-des-soft.onrender.com/api/task',
-});
+import { api } from '../api';
 
 export const listarTasks = async () => {
   const response = await api.get('/listar-task');
