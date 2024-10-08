@@ -1,57 +1,74 @@
-# !!Ao tentar acessar a API, é necessário aguardar 2 minutos pela inicialização do Render!!
-
 # LabDesSoft
+![GitHub repo size](https://img.shields.io/github/repo-size/yG2y/lab-des-soft?style=for-the-badge)
+![GitHub contributors](https://img.shields.io/github/contributors/yG2y/lab-des-soft?style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/yG2y/lab-des-soft?style=for-the-badge)
+> Um sistema de gerenciamento de tarefas que permite realizar operações CRUD, considerando prazos, status e prioridades.
 
-> Aplicação realiza um CRUD de tarefas considerando prazos status e prioridades.
+# ⚠️ **Atenção**: Ao tentar acessar a API, é necessário aguardar 2 minutos pela inicialização do Render.
 
 ### Ajustes e melhorias
 
-O projeto sempre está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
-
-- [ ] Deploy do front end
-- [ ] Correção de Bugs
+As próximas atualizações estão focadas nas seguintes melhorias:
+- [ ] Deploy da interface de usuário
+- [ ] Correção de bugs críticos de usabilidade
 
 # Código do Projeto
 
 ## 💻 Pré-requisitos para uso local
 
-Antes de começar, verifique se você atendeu aos seguintes requisitos:
-
-- Você instalou a versão mais recente de `<node.js>`
-- Você instalou a versão `<jdk 21>`
-- Você tem uma máquina `<Windows>` ou `<Linux>`.
-- Você leu `<https://nodejs.org/en/download>`.
+Antes de começar, certifique-se de ter as seguintes ferramentas instaladas:
+- [Node.js](https://nodejs.org/) (versão mais recente)
+- [JDK 21](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html)
+- Um sistema operacional compatível: Windows, Linux ou macOS.
 
 ## 🚀 Instalando <LabDesSoft> no Front End
 
-Para instalar o <LabDesSoft>, siga estas etapas:
+Para instalar o `LabDesSoft` no Front End, siga as etapas abaixo:
 
-Windows e Linux: (Dentro da pasta de lab-des-soft/front-end)
+1. Acesse a pasta do front-end:
+   ```bash
+   cd lab-des-soft/front-end
+   ```
 
-```
-npm install
-```
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
 ## ☕ Usando <LabDesSoft> no Front End
 
-Para usar <LabDesSoft>, siga estas etapas: (Aletere o arquivo (lab-des-soft\front-end\src\api.js)
+Para usar <LabDesSoft>, siga estas etapas: `lab-des-soft\front-end\src\api.js`
 
-Comente `https://lab-des-soft.onrender.com/api/task`
+1. Comente a linha:
+   ```javascript
+   // https://lab-des-soft.onrender.com/api/task
+   ```
 
-Descomente `http://localhost:8088/api/task`
+2. Descomente a linha:
+   ```javascript
+   http://localhost:8088/api/task
+   ```
 
 
 ## ☕ Usando <LabDesSoft> no Back End
 
-Para usar <LabDesSoft>, siga estas etapas inicie o projeto Java em: 
+Para iniciar o back-end do projeto Java, siga estas etapas:
 
-`lab-des-soft\projeto01\projeto01\src\main\java\com\labdessoft\projeto01\Projeto01Application.java`
+1. Acesse o diretório do projeto Java:
+   ```bash
+   cd lab-des-soft/projeto01/projeto01/src/main/java/com/labdessoft/projeto01
+   ```
 
-# Mensagens de Commit Semânticas
+2. Inicie a aplicação executando o arquivo principal:
+   ```bash
+   Projeto01Application.java
+   ```
 
-Veja como uma pequena mudança no estilo das suas mensagens de commit pode fazer de você um programador melhor.
+## 📜 Mensagens de Commit Semânticas
 
-Formato: `<tipo>(<escopo>): <assunto>`
+Utilizar commits semânticos ajuda a manter um histórico de mudanças mais claro e organizado, facilitando a colaboração e o entendimento da evolução do projeto.
+
+Formato básico: `<tipo>(<escopo>): <assunto>`
 
 `<escopo>` é opcional!
 
@@ -64,6 +81,8 @@ Mais Exemplos:
 - `refactor`: (refatoração de código de produção, ex.: renomear uma variável)
 - `test`: (adicionando testes que faltam, refatoração de testes; sem mudanças no código de produção)
 - `chore`: (atualização de tarefas do grunt, etc.; sem mudanças no código de produção)
+
+  [Leia mais sobre commits semânticos](https://www.conventionalcommits.org/)
 
 ## *Commits que fecham issues*
 
