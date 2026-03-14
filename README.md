@@ -6,13 +6,53 @@
 
 # ⚠️ **Atenção**: Ao tentar acessar a API, é necessário aguardar 2 minutos pela inicialização do Render.
 
-### Ajustes e melhorias
+## 📖 Documentação Interativa
 
-As próximas atualizações estão focadas nas seguintes melhorias:
-- [ ] Deploy da interface de usuário
-- [ ] Correção de bugs críticos de usabilidade
+> Documentação gerada automaticamente com diagramas de arquitetura,
+> mapeamento de dependências e chat com o código:
+>
+> 👉 **[DeepWiki — LabDesSoft](https://deepwiki.com/yG2y/lab-des-soft)**
+>
+> A documentação cobre toda a estrutura do projeto — API REST Spring Boot,
+> frontend React, PostgreSQL com HikariCP e deploy na nuvem via Render.
 
-# Código do Projeto
+***
+
+## 🖥️ Preview
+
+| Interface Frontend | Documentação da API | Deploy em Produção |
+|---|---|---|
+|  |  |  |
+
+***
+
+## 🧱 Arquitetura
+
+    ┌──────────────────┐        ┌──────────────────────────────┐
+    │  React Frontend  │ ──────▶│   Spring Boot REST API        │
+    │  (local)         │        │   Java 21 / Tomcat 10.1       │
+    └──────────────────┘        └──────────────┬───────────────┘
+                                               │  Render (nuvem)
+                                     ┌─────────▼──────────┐
+                                     │   PostgreSQL DB     │
+                                     │   (HikariCP pool)   │
+                                     └────────────────────┘
+
+***
+
+## 🚀 Stack Tecnológica
+
+| Camada | Tecnologia |
+|---|---|
+| Backend | Java 21, Spring Boot 3.2.4 |
+| ORM | Hibernate 6.4, Spring Data JPA |
+| Banco de Dados | PostgreSQL |
+| Pool de Conexão | HikariCP |
+| Frontend | React, Node.js (local) |
+| Documentação da API | OpenAPI 3 (Swagger UI) |
+| Deploy | Render (nuvem) |
+
+***
 
 ## 💻 Pré-requisitos para uso local
 
